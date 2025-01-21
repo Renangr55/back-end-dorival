@@ -1,6 +1,6 @@
 '''
 
-exercíciofloat1
+exercício 1
 
 primeiroNumero = float(input("Digite um número: "))
 segundoNumero = int(input("Digite o segundo número: "))
@@ -25,7 +25,7 @@ else:
     print("Esse número é impar")
 
 
-
+exercicio 4
 nota1 = float(input("digite sua primeira nota: "))
 nota2 = float(input("digite sua segunda nota: "))
 nota3 = float(input("digite  sua terceira nota: "))
@@ -43,12 +43,16 @@ elif media >= 5:
 else:
     print("insira uma nota válida")
 
+exercicio 5
+
 numeroPositivo = int(input("Digite um número: "))
 
 for i in range (0,numeroPositivo + 1,1):
     print(i)
 
 contador = []
+
+exercicio 6
 
 num = 0
 
@@ -86,14 +90,65 @@ string = input('digite alguma coisa: ')
 contar_letras(string)
 
 print(dicionario_string)
+
+
+
+
+
+
+print("-------------------------------------")
+def mergeSort (lista):
+    if len(lista) <= 1:
+        return lista
+
+    
+
+    metade = len(lista) // 2
+
+    parteEsquerda = lista[:metade]
+    parteDireita = lista[-metade:]
+
+    sorteandoEsquerda = mergeSort(parteEsquerda)
+    sorteandoDireita = mergeSort(parteDireita)
+
+    print(sorteandoEsquerda)
+    print(sorteandoDireita)
+    
+
+    
+    return merge (sorteandoEsquerda , sorteandoDireita)
+
+
+def merge (esquerda, direita):
+    resultado = []
+    i = j = 0
+
+    while i < len(esquerda) and j < len(direita):
+        if esquerda[i] < direita[j]:
+            resultado.append(direita[j])
+            j += 1
+        else:
+            resultado.append(esquerda[i])
+            i += 1
+
+    resultado.extend(esquerda[i:])
+    resultado.extend(direita[j:])
+
+    return resultado
+
+    
+    
+test = [2,1,51,5]
+Sorteando = mergeSort(test)
+print(Sorteando)
+print("-------------------------------------")
 '''
 
-lista = [28,20,52,12]
-esquerda = []
-direita = []
+def insertionSort (arr):
+    n = len(arr)
 
-def dividindoLista (list):
-    if len(list) <= 1:
-        return list
+    if n <= 1:
+        return n
+
     
-    lista = len(list)
+
