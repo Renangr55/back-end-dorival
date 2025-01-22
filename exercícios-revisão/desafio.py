@@ -82,31 +82,46 @@ def bubleshots(arr):
 test = [7,3,5,8,9,4]
 aplly = bubleshots(test)
 print(aplly)
+
+
+def procura (lista,element,index=0):
+    if index >= len(lista):
+        return -1
+    if lista[index] == element:
+        return index
+        
+    return  procura (lista, element, index + 1 ) 
+    
+    
+
+lista = [4,3,5,6,7,8]
+elemento = 8
+
+test = procura(lista,elemento)
+print(lista)
+
+
+def buscaLInear (arr,elemento):
+    n = elemento
+    ponteiroInferior = 0
+    ponteiroSuperior = len(arr) - 1
+
+    while ponteiroInferior <= ponteiroSuperior:
+        ponteiroMeio = (ponteiroInferior + ponteiroSuperior) // 2
+        if (arr[ponteiroMeio] == n):
+            return ponteiroMeio
+        else:
+            ponteiroSuperior != elemento
+            return False
+
+lista = [20,31,40,45,51]
+
+elemento = int(input("Digite elemento que você deseja: "))
+
+testUser = buscaLInear(lista,elemento)
+print(testUser)
 '''
 
-def procura (lista,element):
-    for i in range(len(lista)):
-        if (lista == element):
-            return i
-
-    return -1
-
-
-def typing():
-    kaka = []
-    tamanho = int(input("Digite o tamanho: "))
-    for i in range(tamanho):
-        lista = int(input("Digite os numeros que você deseja "))
-        kaka.append(lista)
-
-
-def elemento ():
-    tamanhoo = int(input("Digite o elemento que você deseja: "))
-    return tamanhoo
-
-
-test = procura(typing() ,elemento())
-print(test)
 
 
 
