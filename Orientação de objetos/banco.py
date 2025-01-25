@@ -10,17 +10,17 @@ class Banco():
         if self.chave not in self.Clientes:
             self.Clientes[self.chave] = True #adiconando os valoers na chave
             self.pessoasCadastradas += 1
-            return F'{self.Clientes}'
+            return F'{self. Clientes}'
         else:
             print("Deu errado")
     
     def exibirClientes (self):
-       
+       while True:
         for self.chave in self.Clientes:
             return f"Nome: {self.chave[0]}, RG: {self.chave[1]}, Endereço: {self.chave[2]}, Email: {self.chave[3]}"
         
 
-    def abrirConta (self,nome, rg, endereco, email,tipoConta, valor = 0):
+    def abrirConta (self,nome, rg, endereco, email,tipoConta, valor = 100):
         self.valor = valor
         self.chave = (nome,rg,endereco,email)
 
@@ -42,12 +42,13 @@ class Banco():
         print("1 para sacar")
         print("2 para depositar")
         print("3 para transferencia")
+        
         operacao = int(input("Digite um número: "))
         if operacao == 1:
-            saque = int(input("Digite quanto você quer sacar"))
-            if saque > self.valor:
-                operacaoSaque = saque - self.valor
-                return f"você sacou,sua conta estava com {self.valor} e agora está com {operacaoSaque} e seu saque de {self.saque}, foi sucedida"
+            saque = int(input("Digite quanto você quer sacar: "))
+            if saque < self.valor:
+                operacaoSaque = self.valor - saque
+                return f"você sacou,sua conta estava com {self.valor} e agora está com {operacaoSaque} e seu saque de {saque}, foi sucedida"
             else:
                 print("erro")
 
@@ -74,8 +75,11 @@ test = Banco()
 
 
 test.CadastrarClientes("renan", 87293, "rua brasilia de pelotas", "manoqueraiva@gmail.com" )
+test.CadastrarClientes("marian", 58393, "rua laurisca de franca", "finamente@gmail.com" )
 
+print(test.abrirConta(nome="marian", rg=58393, endereco="rua laurisca de franca", email="finamente@gmail.com",tipoConta="Conta Corrente"))
 print(test.abrirConta(nome="renan", rg=87293, endereco="rua brasilia de pelotas", email="manoqueraiva@gmail.com",tipoConta="Conta Corrente"))
+
 print(test.operacoes())
 print(test.exibirClientes())
 
