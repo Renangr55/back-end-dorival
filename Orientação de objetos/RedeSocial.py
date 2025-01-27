@@ -1,40 +1,50 @@
 class RedeSocial():
-    def __init__(self):
+    def __init__(self,nome):
         self.listaAmigos = []
+        self.nome = nome
 
     def adicionandoAmigos(self):
-        tamanhoLista = 10
-        nome = input("Digite o nome do seu amigo: ")
-        opcao = input("Deseja adicionar mais amigos: ")
+        quantidadeAmigos = int(input("Digite a quantidade de amigos que você deseja adicionar: "))
+        if quantidadeAmigos > 1:
+            for i in range(quantidadeAmigos):
+                nome_amigos = input("Digite o nome do seu amigo: ")
+                self.listaAmigos.append(nome_amigos)
+            
+                
+        else:
+            nome_amigos = input("Digite o nome do seu amigo: ")
+            self.listaAmigos.append(nome_amigos)
+            return self.listaAmigos
         
             
-            self.listaAmigos.append(nome)
             
-        print(self.listaAmigos)
+        return self.listaAmigos
 
     def publicarMensagens(self):
-        mensagem = input("Digite sua mensagem")
-        print(f'{mensagem} foi publicada')
+        mensagem = input("Digite sua mensagem: ")
+        return f'"{mensagem}": sua mensagem foi publicada'
 
     def comentarioPost(self):
         comentandoPost = input("Digite o seu comentário: ")
-        print(f'você comentou no post {comentandoPost}')
+        return f'você comentou no post = {comentandoPost}'
 
     def pesquisaDeUsuario(self):
         pesquisarUsuario = input("Digite o usuário que vcocê deseja pesquisar: ")
         
-        for amigos in self.listaAmigos:
-            if amigos == pesquisarUsuario:
-                print('usuario encontrado')
-            else:
-                print('usuário não encontrado')
+        for i in self.listaAmigos:
+            if i == pesquisarUsuario:
+                return 'usuario encontrado'
+            
+        return 'usuário não encontrado'
 
-social_network = RedeSocial()
 
-social_network.adicionandoAmigos()
 
-social_network.publicarMensagens()
+primeiroUsuario = RedeSocial("Renan")
 
-social_network.comentarioPost()
+print(primeiroUsuario.adicionandoAmigos())
 
-social_network.pesquisaDeUsuario()
+print(primeiroUsuario.publicarMensagens())
+
+print(primeiroUsuario.comentarioPost())
+
+print(primeiroUsuario.pesquisaDeUsuario())
