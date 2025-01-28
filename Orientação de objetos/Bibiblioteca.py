@@ -2,44 +2,62 @@ class Biblioteca ():
     def __init__(self):
         self.livros = []
         self.quantidadeLivros = 0
+    
 
-    def cadastrandoLivros (self):
-        tituloLivro = input("Digite o título do livro: ")
-        idLivro = int(input("Digite o código do livro: "))
-        infomacoesLivros = (tituloLivro, idLivro)
-        self.livros.append(infomacoesLivros)
+    def cadastrandoLivros (self,tituloLivro):
+        self.livros.append(tituloLivro)
         self.quantidadeLivros += 1
-        return "livro cadastrado"
+        print("________________")
+        print(self.livros)
+        return f"livro cadastrado - {tituloLivro}"
 
-    def emprestimoLivro (self):
-        procurandolivro = input("Digite o nome do livro: ")
-        for i in self.livros:
-            if i == procurandolivro:
-                print("Livro emprestado")
-                self.livros.pop[procurandolivro]
+    def emprestimoLivro (self,pesquisandoLivro):
+            if pesquisandoLivro in self.livros:
+                self.livros.remove(pesquisandoLivro)
+                self.quantidadeLivros -= 1
+                print("________________")
+                return f'Livro emprestado - {pesquisandoLivro}'
             else:
                 print("livro não encontrado")
+                
+       
 
-    def devolverLivro (self):
-        devolvendoLivro = input("Digite o título do livro: ")
+    def devolverLivro (self,devolvendoLivro):
         self.livros.append(devolvendoLivro)
         self.quantidadeLivros += 1
+        print("________________")
+        return f"Livro devolvido: {devolvendoLivro}"
 
     def verificarLivro (self):
-        verificandoLivro = input("Digite o título do livro: ")
-        for i in self.livros:
-            if verificandoLivro == self.livros:
-                print("Esse livro está dísponível")
-            else:
-                print("Esse livro não está dísponível")
+        tituloLivro = input("escreva o nome do livro: ")
+        if tituloLivro in self.livros:
+            print(self.livros)
+            return f"Esse livro está dísponível - {tituloLivro}"
+        else:
+            return f"esse livro não está disponível = {tituloLivro}"
+        
+    
     
     def __str__(self):
-        return f'livros disponível: {self.livros}'
+        return f'livros disponívels: {self.livros}'
     
-cliente = Biblioteca()
-print(cliente)
+firstUser = Biblioteca()
 
-print(cliente.cadastrandoLivros())
-print(cliente.emprestimoLivro())
-print(cliente.devolverLivro())
-print(cliente.verificarLivro())
+
+secondUser = Biblioteca()
+
+
+
+
+
+print(firstUser.cadastrandoLivros("Cristo se fez presente"))
+print(secondUser.cadastrandoLivros("Jesus sempre esteve conosco"))
+
+print(firstUser.emprestimoLivro("Cristo se fez presente"))
+print(secondUser.emprestimoLivro("Jesus sempre esteve conosco"))
+
+print(firstUser.devolverLivro("Cristo se fez presente"))
+print(secondUser.devolverLivro("Jesus sempre esteve conosco"))
+
+print(secondUser.verificarLivro())
+print(firstUser.verificarLivro())

@@ -8,7 +8,7 @@ class lojaVirtual():
 
             codigoDoProduto = len(self.produtos)
             
-            self.dadosProduto ={
+            self.dadosProduto = {
                 "codigo" : codigoDoProduto,
                 "Produto" : nomeProduto,
                 "preço" : preco,
