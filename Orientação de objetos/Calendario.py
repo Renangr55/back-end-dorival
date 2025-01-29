@@ -1,17 +1,22 @@
 import calendar
 from datetime import datetime
-import holidays
+
 
 class Calendario ():
     
     def __init__(self,ano,mes):
         self.ano = ano
         self.mes = mes
-        self.feriados = holidays.Brazil(years=2025)
+        self.feriados = {
+            (2025, 1, 1): "Ano Novo",
+            (2025, 12, 25): "Natal",
+            (2025, 9, 7): "Independência do Brasil",
+            (2025, 11, 15): "Proclamação da República"
+        }
        
         
     def ExibindoData (self):
-        self.ultimo_dia = calendar.monthrange(self.ano, self.mes)[1]
+        self.ultimo_dia = calendar.monthrange(self.ano, self.mes)[1] #descobrindo quantos dias tem no mês
         
         self.dias = []
         
@@ -29,18 +34,23 @@ class Calendario ():
             dataFormatada = datetime.strptime(dia, "%d/%m/%Y")
             
             if dataFormatada in self.feriados:
-                self.diasNormais.append(f"{dia} - diasFeriados {self.diasFeriados} {self.data}")
-                return self.diasNormais
+                self.diasFeriados.append(f"{dia} - diasFeriados {self.diasFeriados} {self.data}")
+                return "esses dias são"
+        return {
+            "feriados" : self.diasFeriados,
             
-            else:
-                self.diasFeriados.append(f"{dia} tem feriado")
-                return self.diasFeriados
-            
+        }
+
+        
+        
+        
+        
     def __str__(self):
         return f'dias com diasFeriados: {self.feriados} \n dias normais: {self.diasNormais}  '
         
         
-teste = Calendario(2025, 3)
+teste = Calendario(2025, 1)
 print(teste.ExibindoData())
 print(teste.verificandoCalendario())
+
         
