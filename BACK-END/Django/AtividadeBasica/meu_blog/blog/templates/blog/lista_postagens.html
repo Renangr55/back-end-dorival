@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        {% for postagem in postagens %}
+        <li>
+        <p class="status {{ atividades.status|lower }}">{{ atividades.status }}</p>
+        <p>{{ postagem.conteudo|slice:":200" }}...</p>
+        <p><a href="#">Leia mais</a></p>
+        </li>
+        {% endfor %}
+        </ul>
+</body>
+</html>
