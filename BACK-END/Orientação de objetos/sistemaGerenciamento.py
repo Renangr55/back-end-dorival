@@ -42,27 +42,63 @@ class Fornecedor():
         return f"Produto: {self.nomeProduto} fornecido por {self.nomeFornecedor} "
         
         
+class Compra(Fornecedor):
+    def __init__(self,produto:str):
+        self.produto = produto
+      
+        
+    def comprando(self):
+        if self.produto in self.estoque:
+            self.estoque.remove(self.produto)
+            print("realizado a compra")
+        else:
+            print("A compra não foi efetuada")
+            
+    def __str__(self):
+        return f"você comprou um item: {self.produto}"
+        
+    
+class Vendas ():
+    def __init__(self, produto:str ,preco:float):
+        self.produto = produto
+        self.preco = preco
+        
+    def exibindoValor(self):
+        self.precoAtualizada = self.preco + 60
+        print(f"o preço do item é {self.precoAtualizada}")
+        
+        
+    def __str__(self):
+        return f"o nome do produto é: {self.produto} e elke vai ser vendido por um preço mais alto"
+    
+
+    
+    
+        
+    
+        
+        
+
+
+
 camisa = Produto("camisa" , 90.00 , 1 , 10)
 print(camisa)
 camisa.controleQuantidade(quantidadeAtualizada=50)
 
 categoriaCamisa = Categoria("Roupa")
-print(categoriaCamisa)
+print(categoriaCamisa)    
 
+comprandoProduto = Compra("Roupa")
+print(comprandoProduto)
+        
+        
+vendaProduto = Vendas("Roupa", 60.00)
+print(vendaProduto)
 
-class Compra ():
-    def __init__(self,produtoCompra):
-        
-        
-        
+vendaProduto.exibindoValor()
 
 adidas = Fornecedor("Adidas Brasil" , "Camisa Palmeiras 2023/2024")
 adidas.adicionarProdutos()
 print(adidas)
         
-        
-        
-        
-
-               
         
