@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>listando livros pelo filtro</title>
+</head>
+<body>
+    <form method="get">
+        {{ filter.form.as_p}}
+        <button type="submit">Filtrar</button>
+    </form>
+
+    <table border="1">
+        <tr>
+            <th>Título</th>
+            <th>Autor</th>
+            <th>Ano</th>
+        </tr>
+        {% for livro in filter.qs %}
+        <tr>
+            <td>{{ livro.titulo }}</td>
+            <td>{{ livro.autor }}</td>
+            <td>{{ livro.ano  }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h1> voltar para a página de incial</h1>
+    <a href="{% url 'livro_read' %}">clique aqui</a>
+    
+</body>
+</html>

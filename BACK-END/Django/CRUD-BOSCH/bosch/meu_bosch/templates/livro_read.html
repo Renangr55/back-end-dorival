@@ -1,0 +1,36 @@
+{% load static %}  <!-- Carregar arquivos estáticos -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <header>
+        <h1> Biblioteca</h1>
+    </header>
+    <main>
+        <h1>listagem de livros</h1>
+        <a href="{% url 'livro_create' %}">Cadastrar um novo livro</a>
+
+        <ul>
+            {% for livro in livros %}
+            <li>
+                {{ livro.titulo }} - {{livro_descricao}}
+                <a href="{% url 'livro_update' livro.pk %}">Editar</a>
+                <a href="{% url 'livro_delete' livro.pk %}">Deletar</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </main>
+
+    <footer>
+        <h1>Filtros</h1>
+        <a href="{% url 'livro_list' %}">Pesquisar um livro pelo filtro</a>
+    </footer>
+</body>
+</html>
