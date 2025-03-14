@@ -61,10 +61,3 @@ def deletar_aluno(request,pk):
     aluno.delete()
     return Response({'aluno excluido'},status=status.HTTP_204_NO_CONTENT)
 
-@api_view(["GET"])
-def macharete(request, texto):
-    import pyfiglet
-    gabriel = pyfiglet.figlet_format(texto)
-    
-    return Response(gabriel, status=status.HTTP_200_OK)
-   
