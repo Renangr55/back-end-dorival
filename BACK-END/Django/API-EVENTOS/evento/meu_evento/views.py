@@ -4,6 +4,7 @@ from .serializers import EventoSerializer
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status
+from datetime import datetime, timedelta
 
 
 # Create your views here.
@@ -11,30 +12,40 @@ from rest_framework import status
 @api_view(['GET', 'POST'])
 def listar_criar_evento(request,categoria=None,data=None, quantidade=None):   
     
+    eventos = Evento.objects.all()
+
     #listando eventos
     if request.method == 'GET':
-        evento = Evento.objects.all()
-        serializer = EventoSerializer(evento, many=True)
+      
 
         categoria = request.query_params.get('categoria', None)
         data = request.query_params.get('data', None)
-        quantidade = request.query_params.get('quantidade', None)
-
-        
+        quantidade = request.query_params.get('quantidade', None)        
 
         if categoria:
-            eventos = Evento.objects.filter(evento_categoria_icontains=categoria)
+            eventos = Evento.objects.filter(categoria__icontains=categoria)
         
         if data:
-            eventos = Evento.objects.filter(evento_data_icontains=data)
+            eventos = Evento.objects.filter(data_hora__icontains=data)
 
         if quantidade:
             try:
-                eventos = eventos[:int(quantidade)]  # Limita a quantidade de resultados
+                eventos = eventos[0:int(quantidade)]  # Limita a quantidade de resultados
             except ValueError:
                 return Response({"error": "Quantidade deve ser um número"}, status=status.HTTP_400_BAD_REQUEST)
+            
+        
+        serializer = EventoSerializer(eventos, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
 
     
+    
+    
+
+
+
     #Criando um evento
     if request.method == 'POST':
         serializer = EventoSerializer(data=request.data)
@@ -47,8 +58,23 @@ def listar_criar_evento(request,categoria=None,data=None, quantidade=None):
 
 
 
+
+
+
 @api_view(['PUT','DELETE'])
 def alterar_deletar_evento(request,pk):
+
+    #listando um evento específico
+    if request.method == 'GET':
+        try:
+            evento = Evento.objects.get(pk=pk)
+        except Evento.DoesNotExist:
+            return Response ({"ERRO" : "Aluno não encontrado"}, status=status.HTTP_400_BAD_REQUEST)
+
+        serializer = EventoSerializer(evento)
+        
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
     # alterando evento
     if request.method == 'PUT':
         try:
@@ -72,17 +98,19 @@ def alterar_deletar_evento(request,pk):
     
         evento.delete()
         return Response({'EVENTO EXCLUIDO!!'}, status=status.HTTP_204_NO_CONTENT)
-        #return Response(status=status.HTTP_400_BAD_REQUEST)
+    return Response(status=status.HTTP_400_BAD_REQUEST)
 
-    #listando um evento específico
-    if request.method == 'GET':
-        try:
-            evento = Evento.objects.get(pk=pk)
-        except Evento.DoesNotExist:
-            return Response ({"ERRO" : "Aluno não encontrado"}, status=status.HTTP_400_BAD_REQUEST)
+@api_view(['GET'])
+def eventosExibindo(request):
+    data = datetime.today().strftime('%Y-%m-%d')
+    data_evento = datetime.strptime(data, '%Y-%m-%d')
+    diasParaEventos = (data_evento + timedelta(days=7)).strftime('%Y-%m-%d')
 
-    serializer = EventoSerializer(evento)
-    return Response(serializer.data, status=status.HTTP_200_OK)
+    subindo_eventos = Evento.objects.all().filter(event_date__gt = data).filter(event_date__lte = diasParaEventos)
+    subindoEventosSerializer = EventoSerializer(subindo_eventos, many=True)
+    return Response(subindo_eventos.data, status=status.HTTP_200_OK)
+    
+
 
 
 
