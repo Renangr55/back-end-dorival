@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Evento
+from django.utils import timezone
 from .serializers import EventoSerializer
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
@@ -19,14 +20,15 @@ def listar_criar_evento(request,categoria=None,data=None, quantidade=None):
       
 
         categoria = request.query_params.get('categoria', None)
-        data = request.query_params.get('data', None)
+        data = request.query_params.get('data_hora', None)
         quantidade = request.query_params.get('quantidade', None)        
 
         if categoria:
             eventos = Evento.objects.filter(categoria__icontains=categoria)
         
         if data:
-            eventos = Evento.objects.filter(data_hora__icontains=data)
+            data_formatada = datetime.strptime(data, "%Y-%m-%d").date()
+            eventos = Evento.objects.filter(data_hora__date=data_formatada)
 
         if quantidade:
             try:
@@ -61,7 +63,7 @@ def listar_criar_evento(request,categoria=None,data=None, quantidade=None):
 
 
 
-@api_view(['PUT','DELETE'])
+@api_view(['GET','PUT','DELETE'])
 def alterar_deletar_evento(request,pk):
 
     #listando um evento específico
@@ -69,7 +71,7 @@ def alterar_deletar_evento(request,pk):
         try:
             evento = Evento.objects.get(pk=pk)
         except Evento.DoesNotExist:
-            return Response ({"ERRO" : "Aluno não encontrado"}, status=status.HTTP_400_BAD_REQUEST)
+            return Response ({"ERRO" : "Evento não encontrado"}, status=status.HTTP_400_BAD_REQUEST)
 
         serializer = EventoSerializer(evento)
         
@@ -102,13 +104,23 @@ def alterar_deletar_evento(request,pk):
 
 @api_view(['GET'])
 def eventosExibindo(request):
-    data = datetime.today().strftime('%Y-%m-%d')
-    data_evento = datetime.strptime(data, '%Y-%m-%d')
-    diasParaEventos = (data_evento + timedelta(days=7)).strftime('%Y-%m-%d')
+    data = datetime.today().date()
 
-    subindo_eventos = Evento.objects.all().filter(event_date__gt = data).filter(event_date__lte = diasParaEventos)
-    subindoEventosSerializer = EventoSerializer(subindo_eventos, many=True)
-    return Response(subindo_eventos.data, status=status.HTTP_200_OK)
+    #comibinando a data com o dia e a hora
+    data_completa = datetime.combine(data, datetime.min.time())
+    
+    #conventendo o datetime para um datetime aware,ela adiciona informações de fuso horário do django no datetime baseda na configuração TIME_ZONE nas settings
+    data_aware = timezone.make_aware(datetime.combine(data, datetime.min.time()))
+    
+
+    diasParaEventos = data_aware + timedelta(days=7)
+
+    #usando a propriedade range para retornar o intervalo da data de hoje a data daqui 7 dias
+    filtrando_eventos = Evento.objects.all().filter(data_hora__range = [data, diasParaEventos])
+    
+    #retornan um serializer com a filtragem dos eventos
+    eventos_serializer = EventoSerializer(filtrando_eventos, many=True)
+    return Response(eventos_serializer.data, status=status.HTTP_200_OK)
     
 
 

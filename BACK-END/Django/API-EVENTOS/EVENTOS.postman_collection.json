@@ -1,0 +1,1131 @@
+{
+	"info": {
+		"_postman_id": "50c49c38-12aa-4fd2-af87-74627e9c6d42",
+		"name": "EVENTOS",
+		"description": "api de eventos,que serve para você realizar o cadastro de eventos,listar eventos e listar somente um evento,deletar eventos e atualizar evento",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "41860419"
+	},
+	"item": [
+		{
+			"name": "criar eventos",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"nome\": \"Conferência\",\r\n        \"descricao\": \"que saudade\",\r\n        \"local\": \"Rosolem\",\r\n        \"data_criacao\": \"2025-03-25T20:30:54.970772Z\",\r\n        \"data_hora\": \"2025-03-25T20:40:20Z\",\r\n        \"categoria\": \"regional\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/eventos/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"eventos",
+						""
+					]
+				},
+				"description": "O enpoint disponível para criar eventos é eventos.\n\nPara cadastrar um evento, as informações necessárias são:\n\n- nome\n    \n- descrição\n    \n- local\n    \n- data de criação\n    \n- data e hora do evento\n    \n- categoria\n    \n\nprecisa digitar no body, as informações do evento no formato de estrutura JSON.\n\nlogo quando o evento for cadastrado, ele retornara uma resposta com as informações do evento e chave primária."
+			},
+			"response": [
+				{
+					"name": "Criando evento",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"nome\": \"Conferência\",\r\n        \"descricao\": \"que saudade\",\r\n        \"local\": \"Rosolem\",\r\n        \"data_criacao\": \"2025-03-25T20:30:54.970772Z\",\r\n        \"data_hora\": \"2025-03-25T20:40:20Z\",\r\n        \"categoria\": \"regional\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/eventos/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"eventos",
+								""
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 20 Mar 2025 17:15:59 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.13.1"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, OPTIONS, POST"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "178"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 11,\n    \"nome\": \"Conferência\",\n    \"descricao\": \"que saudade\",\n    \"local\": \"Rosolem\",\n    \"data_criacao\": \"2025-03-20T17:15:59.692204Z\",\n    \"data_hora\": \"2025-03-25T20:40:20Z\",\n    \"categoria\": \"regional\"\n}"
+				}
+			]
+		},
+		{
+			"name": "atualizando dados do evento",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 11,\r\n    \"nome\": \"Conferência JOVEN\",\r\n    \"descricao\": \"jahagagsfg\",\r\n    \"local\": \"Rosolem\",\r\n    \"data_criacao\": \"2025-03-20T17:15:59.692204Z\",\r\n    \"data_hora\": \"2025-03-26T20:50:20Z\",\r\n    \"categoria\": \"regional\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/eventos/11/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"eventos",
+						"11",
+						""
+					]
+				},
+				"description": "Para atualizar dados de um evento existente,o usuário precisa inserir o enpoint e adicionar PK usando o método PUT.\n\n- id\n    \n- nome\n    \n- descrição\n    \n- local\n    \n- data de criação\n    \n- data e hora do evento\n    \n- categoria\n    \n\nO usuário precisa inserir o evento que ele deseja alterar as informações no formato JSON no body. Se tudo ocorrer da maneira certa, retornára um status 201.\n\nCaso ocorra um erro, retornára um status de erro 404"
+			},
+			"response": [
+				{
+					"name": "evento atualizado",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 11,\r\n    \"nome\": \"Conferência JOVEN\",\r\n    \"descricao\": \"jahagagsfg\",\r\n    \"local\": \"Rosolem\",\r\n    \"data_criacao\": \"2025-03-20T17:15:59.692204Z\",\r\n    \"data_hora\": \"2025-03-26T20:50:20Z\",\r\n    \"categoria\": \"regional\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/eventos/11/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"eventos",
+								"11",
+								""
+							]
+						}
+					},
+					"status": "Reset Content",
+					"code": 205,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 20 Mar 2025 17:34:41 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.13.1"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "DELETE, GET, OPTIONS, PUT"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "183"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 11,\n    \"nome\": \"Conferência JOVEN\",\n    \"descricao\": \"jahagagsfg\",\n    \"local\": \"Rosolem\",\n    \"data_criacao\": \"2025-03-20T17:15:59.692204Z\",\n    \"data_hora\": \"2025-03-26T20:50:20Z\",\n    \"categoria\": \"regional\"\n}"
+				},
+				{
+					"name": "atualização sucedida",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 11,\r\n    \"nome\": \"Conferência JOVEN\",\r\n    \"descricao\": \"jahagagsfg\",\r\n    \"local\": \"Rosolem\",\r\n    \"data_criacao\": \"2025-03-20T17:15:59.692204Z\",\r\n    \"data_hora\": \"2025-03-26T20:50:20Z\",\r\n    \"categoria\": \"regional\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/eventos/11/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"eventos",
+								"11",
+								""
+							]
+						}
+					},
+					"status": "Reset Content",
+					"code": 205,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 20 Mar 2025 17:35:41 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.13.1"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "DELETE, GET, OPTIONS, PUT"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "183"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 11,\n    \"nome\": \"Conferência JOVEN\",\n    \"descricao\": \"jahagagsfg\",\n    \"local\": \"Rosolem\",\n    \"data_criacao\": \"2025-03-20T17:15:59.692204Z\",\n    \"data_hora\": \"2025-03-26T20:50:20Z\",\n    \"categoria\": \"regional\"\n}"
+				},
+				{
+					"name": "dados atualizados",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 11,\r\n    \"nome\": \"Conferência JOVEN\",\r\n    \"descricao\": \"jahagagsfg\",\r\n    \"local\": \"Rosolem\",\r\n    \"data_criacao\": \"2025-03-20T17:15:59.692204Z\",\r\n    \"data_hora\": \"2025-03-26T20:50:20Z\",\r\n    \"categoria\": \"regional\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/eventos/11/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"eventos",
+								"11",
+								""
+							]
+						}
+					},
+					"status": "Reset Content",
+					"code": 205,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 20 Mar 2025 17:38:26 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.13.1"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "DELETE, GET, OPTIONS, PUT"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "183"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 11,\n    \"nome\": \"Conferência JOVEN\",\n    \"descricao\": \"jahagagsfg\",\n    \"local\": \"Rosolem\",\n    \"data_criacao\": \"2025-03-20T17:15:59.692204Z\",\n    \"data_hora\": \"2025-03-26T20:50:20Z\",\n    \"categoria\": \"regional\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Listar eventos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/eventos/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"eventos",
+						""
+					]
+				},
+				"description": "Para listar todos os eventos, o usuário apenas precisára colocar o end point sem nehuma chave primária. Se tudo ocorrer da maneira certa, retornára um status 201.\n\nCaso, o usuário queira filtrar, basta ele colocar depois de eventos/,um ponto de interrogação e o filtro do seu gosto. As opções de filtro são:\n\n- quantidade\n    \n- data\n    \n- categoria\n    \n\nCaso ocorra um erro, retornára um status de erro 400"
+			},
+			"response": [
+				{
+					"name": "listando todos eventos",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/eventos/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"eventos",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 20 Mar 2025 17:52:45 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.13.1"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, OPTIONS, POST"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "764"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 9,\n        \"nome\": \"Festa\",\n        \"descricao\": \"festa da fámilia\",\n        \"local\": \"casa da vó angela\",\n        \"data_criacao\": \"2025-03-20T17:10:02.394123Z\",\n        \"data_hora\": \"2025-03-25T15:30:05Z\",\n        \"categoria\": \"festivo\"\n    },\n    {\n        \"id\": 10,\n        \"nome\": \"acampamento\",\n        \"descricao\": \"um evento incrível da minha igreja\",\n        \"local\": \"Acampamento maanain\",\n        \"data_criacao\": \"2025-03-20T17:13:30.312517Z\",\n        \"data_hora\": \"2025-04-01T19:30:05Z\",\n        \"categoria\": \"festivo\"\n    },\n    {\n        \"id\": 11,\n        \"nome\": \"Conferência JOVEN\",\n        \"descricao\": \"jahagagsfg\",\n        \"local\": \"Rosolem\",\n        \"data_criacao\": \"2025-03-20T17:15:59.692204Z\",\n        \"data_hora\": \"2025-03-26T20:50:20Z\",\n        \"categoria\": \"regional\"\n    },\n    {\n        \"id\": 12,\n        \"nome\": \"Conferência\",\n        \"descricao\": \"que saudade\",\n        \"local\": \"Rosolem\",\n        \"data_criacao\": \"2025-03-20T17:16:55.864443Z\",\n        \"data_hora\": \"2025-03-25T20:40:20Z\",\n        \"categoria\": \"regional\"\n    }\n]"
+				},
+				{
+					"name": "listando pelo filtro de categoria",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/eventos/?categoria=festivo",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"eventos",
+								""
+							],
+							"query": [
+								{
+									"key": "categoria",
+									"value": "festivo"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 20 Mar 2025 18:37:17 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.13.1"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, OPTIONS, POST"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "401"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 9,\n        \"nome\": \"Festa\",\n        \"descricao\": \"festa da fámilia\",\n        \"local\": \"casa da vó angela\",\n        \"data_criacao\": \"2025-03-20T17:10:02.394123Z\",\n        \"data_hora\": \"2025-03-25T15:30:05Z\",\n        \"categoria\": \"festivo\"\n    },\n    {\n        \"id\": 10,\n        \"nome\": \"acampamento\",\n        \"descricao\": \"um evento incrível da minha igreja\",\n        \"local\": \"Acampamento maanain\",\n        \"data_criacao\": \"2025-03-20T17:13:30.312517Z\",\n        \"data_hora\": \"2025-04-01T19:30:05Z\",\n        \"categoria\": \"festivo\"\n    }\n]"
+				},
+				{
+					"name": "listando eventos pelos filtros de categoria e quantidade",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/eventos/?categoria=festivo&quantidade=1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"eventos",
+								""
+							],
+							"query": [
+								{
+									"key": "categoria",
+									"value": "festivo"
+								},
+								{
+									"key": "quantidade",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 20 Mar 2025 18:40:55 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.13.1"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, OPTIONS, POST"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "188"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 9,\n        \"nome\": \"Festa\",\n        \"descricao\": \"festa da fámilia\",\n        \"local\": \"casa da vó angela\",\n        \"data_criacao\": \"2025-03-20T17:10:02.394123Z\",\n        \"data_hora\": \"2025-03-25T15:30:05Z\",\n        \"categoria\": \"festivo\"\n    }\n]"
+				},
+				{
+					"name": "listando evento pela data",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/eventos/?data=2025-03-25",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"eventos",
+								""
+							],
+							"query": [
+								{
+									"key": "data",
+									"value": "2025-03-25"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 20 Mar 2025 18:52:13 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.13.1"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "OPTIONS, POST, GET"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "580"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 9,\n        \"nome\": \"Festa\",\n        \"descricao\": \"festa da fámilia\",\n        \"local\": \"casa da vó angela\",\n        \"data_criacao\": \"2025-03-20T17:10:02.394123Z\",\n        \"data_hora\": \"2025-03-25T15:30:05Z\",\n        \"categoria\": \"festivo\"\n    },\n    {\n        \"id\": 10,\n        \"nome\": \"acampamento\",\n        \"descricao\": \"um evento incrível da minha igreja\",\n        \"local\": \"Acampamento maanain\",\n        \"data_criacao\": \"2025-03-20T17:13:30.312517Z\",\n        \"data_hora\": \"2025-04-01T19:30:05Z\",\n        \"categoria\": \"festivo\"\n    },\n    {\n        \"id\": 12,\n        \"nome\": \"Conferência\",\n        \"descricao\": \"que saudade\",\n        \"local\": \"Rosolem\",\n        \"data_criacao\": \"2025-03-20T17:16:55.864443Z\",\n        \"data_hora\": \"2025-03-25T20:40:20Z\",\n        \"categoria\": \"regional\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "listando um evento",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"description": "para listar somente um evento o usuário precisa colocar o endpoint com PK de determinado evento."
+			},
+			"response": [
+				{
+					"name": "listou em evento",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/eventos/11/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"eventos",
+								"11",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 20 Mar 2025 18:23:21 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.13.1"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "DELETE, GET, OPTIONS, PUT"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "183"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 11,\n    \"nome\": \"Conferência JOVEN\",\n    \"descricao\": \"jahagagsfg\",\n    \"local\": \"Rosolem\",\n    \"data_criacao\": \"2025-03-20T17:15:59.692204Z\",\n    \"data_hora\": \"2025-03-26T20:50:20Z\",\n    \"categoria\": \"regional\"\n}"
+				},
+				{
+					"name": "teste",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/eventos/11/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"eventos",
+								"11",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 20 Mar 2025 18:22:40 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.13.1"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "DELETE, GET, OPTIONS, PUT"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "183"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 11,\n    \"nome\": \"Conferência JOVEN\",\n    \"descricao\": \"jahagagsfg\",\n    \"local\": \"Rosolem\",\n    \"data_criacao\": \"2025-03-20T17:15:59.692204Z\",\n    \"data_hora\": \"2025-03-26T20:50:20Z\",\n    \"categoria\": \"regional\"\n}"
+				},
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/eventos/11/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"eventos",
+								"11",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 20 Mar 2025 18:25:24 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.13.1"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "DELETE, GET, OPTIONS, PUT"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "183"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 11,\n    \"nome\": \"Conferência JOVEN\",\n    \"descricao\": \"jahagagsfg\",\n    \"local\": \"Rosolem\",\n    \"data_criacao\": \"2025-03-20T17:15:59.692204Z\",\n    \"data_hora\": \"2025-03-26T20:50:20Z\",\n    \"categoria\": \"regional\"\n}"
+				}
+			]
+		},
+		{
+			"name": "deletando evento",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/eventos/1/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"eventos",
+						"1",
+						""
+					]
+				},
+				"description": "Para deletar, o usuário precisar realizar uma requisição no endpoint com o método delete e inserir o código de detrminado evento.\n\nCaso ocorra um erro,retornara um suatus de erro 400"
+			},
+			"response": [
+				{
+					"name": "aluno deletado",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/eventos/1/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"eventos",
+								"1",
+								""
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Fri, 14 Mar 2025 19:09:39 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.13.1"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "OPTIONS, PUT, DELETE"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "21"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    \"EVENTO EXCLUIDO!!\"\n]"
+				},
+				{
+					"name": "evento deletado",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/eventos/11/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"eventos",
+								"11",
+								""
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 20 Mar 2025 18:27:35 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.13.1"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "DELETE, GET, OPTIONS, PUT"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "21"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    \"EVENTO EXCLUIDO!!\"\n]"
+				}
+			]
+		},
+		{
+			"name": "http://127.0.0.1:8000/eventos/11/",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/eventos/11/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"eventos",
+						"11",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
