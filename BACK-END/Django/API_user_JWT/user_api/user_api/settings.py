@@ -9,7 +9,6 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -40,6 +39,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'rest_framework',
     'my_user',
+    
 
 ]
 
@@ -61,6 +61,8 @@ REST_FRAMEWORK = {
 }
 
 ROOT_URLCONF = 'user_api.urls'
+
+AUTH_USER_MODEL = "my_user.UserAdmSite"
 
 TEMPLATES = [
     {
