@@ -1,0 +1,75 @@
+renan Paulo macharete alyson
+
+Iniciação: 
+	Objetivo: Resgate de um astronauta à deriva.
+
+	Stakeholders: Astronauta; Equipe, Agência Espacial Global.
+
+	Viabilidade: Técnica (4); Econômica (10); Operacional (7).
+
+	Riscos identificados: Ficar à deriva; Falta de comunicação; Não
+	finalizar a nave; Mal funcionamento da nave; Falta de conhecimento técnico;
+	Possíveis danos causados pelos asteroides e possível falta de combustível. 
+
+	Entregável: Planejamento da nave, e dos equipamentos.
+
+Planejamento:
+	Detalhamento do escopo: 
+		Incluso: Montagem da nave; Organização do resgate; Organização da equipe. 
+		Não incluso: Resgate da nave do astronauta à deriva;
+	Prazo: 
+		2 meses;
+		4 sprints - sprint para cada 2 semanas: 
+			- Primeira sprint: Agrupamento de recursos e leva;
+			- Segunda sprint: Dedicação a montagem para nave;
+			- Terceira sprint: Lançamento e busca do astronauta e meio aos astros;
+			- Quarta sprint: Finalização de busca e retorno.
+	Custos:	
+		Com base em pesquisas anteriores - $300 milhões
+		Alocação de recursos: 
+			Equipe: $1.000.000 ($250.000/integrante)
+			Recursos: $298.999.000
+			Plano premium vitalício Kanban Macharete: $1.000
+	Riscos:
+		Falta de tempo; Atraso em buscas ou montagem da nave.
+
+		Prevenções: 
+			Falta de tempo: Desenvolvimento ágil aplicado à equipe;
+			Atrasos: Gerenciamento flexível (prazo estendido), prover equipamentos de alto nível
+			para eliminar a probabilidade de um ruído (falha) de comunicação.
+	Entregável:
+		Kanban (plataforma do Macharete).
+
+Execução:
+	Plano:
+		Coordenação de equipes:
+			Autogerenciável (metodologia ágil)
+		Aquisição:
+			Combustível - petrobras(reduziu a possibilidade de falta de combustível), canal de comunicação - tim(reduziu a probabilidade de um possível ruído de comunicação)
+			conserto mecânico - nasa(Reduziu a possiblidades de acidentes não planejados), dispensação do aparelho de comunicação (contribuiu para reduzir o peso)
+		Produção:
+			Surgiu um imprevisto que necessitou  a dispensação de um equipamento de comunicação.
+	Reuniões:
+		Não é possível realizar a comunicação durante o lançamento.
+		Após o resgate a comunicação foi reativada com o equipamento do astronauta.
+		
+	Entregável: Nave da equipe funcionando perfeitamente, resgate do astronauta concluído, nave do astronauta danificada (não foi feito o resgate da nave).
+
+Monitoramento e Controle:
+	Acompanhamento:
+		De acordo com as etapa definidas em cada sprint.
+	Gerenciamento:
+		Flexível
+	Resolução de problemas:
+		Problemática bem definida, com isso, a resolução foi efetuada de prontidão.
+	Entregavel:
+		Relatório de status é enviado em toda sprint devido o progresso do projeto
+Encerramento:
+	Entrega:
+		- O resgate foi concluido e o trabalho foi entregue a empresa com sucesso
+	Recursos:
+		- Cada um voltou para sua rotina diária,os materiáis foram armazenados em um depositos e contrato foi realizado com sucesso
+	Lições: 
+		- Precisamos sempre planejar o processo completo,verificar todos os requisitos e dimunuir a probabilidade de erros de alguma ação
+	Entregavel: 
+		Documento enviado com a conclusão do projeto e relatório da missão concluída.
