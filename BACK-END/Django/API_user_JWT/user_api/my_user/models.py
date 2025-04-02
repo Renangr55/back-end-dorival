@@ -14,10 +14,3 @@ class UserAdmSite(AbstractUser):
 
 
 
-class User (models.Model):
-    name = models.CharField(max_length=100)
-    idadeUser = models.PositiveIntegerField(null=True, blank=True)
-    enderecoUser = models.CharField(max_length=200)
-
-    def __str__(self):
-        return self.name
