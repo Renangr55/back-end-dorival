@@ -1,9 +1,11 @@
 from django.shortcuts import render
-from rest_framework.generics import ListCreateAPIView , RetrieveUpdateDestroyAPIView
+from rest_framework.generics import ListCreateAPIView , RetrieveUpdateDestroyAPIView, CreateAPIView
 from .models import Patinho
-from .serializers import PatosSerializer
+from .serializers import PatosSerializer, LoginSerializer, DonoDoPatoSerializer
 from rest_framework.pagination import PageNumberPagination
-from rest_framework import serializers
+from rest_framework import serializers, status
+from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
 # Create your views here.
 
 class PatoPaginacao(PageNumberPagination):
@@ -28,5 +30,43 @@ class PatoListCreateAPIView(ListCreateAPIView):
         if serializer.validated_data['peso'] < 0:
             raise serializers.ValidationError("o peso não pode ser negativo")
         serializer.save()
+
+
+class PatoRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
+    queryset = Patinho.objects.all()
+    serializer_class = PatosSerializer
+    lookup_field = 'pk'
+
+    def put(self, request, *args, **kwargs):
+        idade = request.data.get('idade')
+        if int(idade) < 20:
+
+            #tem 2 jeitos de fazer
+
+            data = request.data.copy()
+            data['cor'] = 'Verde'
+            request._full_data=data
+            
+        return super().put(request, *args, **kwargs)
+
+class LoginView(CreateAPIView):
+    serializer_class = LoginSerializer
+    permission_classes = [AllowAny]
+
+    def create (self, request, *args, **Kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        usuario = serializer.validated_data['usuario']
+        usuario_serializer = DonoDoPatoSerializer(usuario)
+
+        return Response({
+            'usuario': usuario_serializer.data,
+            'refresh': serializer.validated_data['refresh'],
+            'acess': serializer.validated['acess']
+
+        },status=status.HTTP_200_OK)
+    
+
 
 
