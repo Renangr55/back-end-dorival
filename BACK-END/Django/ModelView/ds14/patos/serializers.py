@@ -2,6 +2,7 @@ from rest_framework import serializers
 from .models import Patinho , DonoDoPato
 from django.contrib.auth import authenticate
 from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 class PatosSerializer(serializers.ModelSerializer):
     class Meta:
@@ -14,7 +15,7 @@ class DonoDoPatoSerializer(serializers.ModelSerializer):
         model = DonoDoPato
         fields = '__all__'
 
-
+''''
 class LoginSerializer(serializers.Serializer):
     username = serializers.CharField()
     password = serializers.CharField(write_only = True)
@@ -42,4 +43,14 @@ class LoginSerializer(serializers.Serializer):
         else:
             mensagem = 'Usename ou senha não inseridos'
             raise serializers.ValidationError(mensagem, code='authorization')
+'''
 
+class LoginSerializer2(TokenObtainPairSerializer):
+    def validate(self, attrs):
+        dados = super().validate(attrs)
+        dados['usuario'] = {
+            'nome' : self.user.username,
+            'bio' : self.user.bio
+        }
+
+        return dados
