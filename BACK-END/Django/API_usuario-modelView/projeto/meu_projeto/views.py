@@ -6,6 +6,7 @@ from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework import status
 
 
 # Create your views here.
@@ -32,6 +33,17 @@ class UsuarioRetrieveUpdateDestroyAPIView(RetrieveDestroyAPIView):
     queryset = Usuario.objects.all()
     serializer_class = UsuariosSerializer
     lookup_field = 'pk'
+    permission_classes = [IsAuthenticated]
+
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        self.perform_destroy(instance)
+        return Response({"Mensagem" : f" deletado com sucesso"}, status=status.HTTP_204_NO_CONTENT)
+    
+
+   
+    
 
 class LoginView(TokenObtainPairView):
     serializer_class = LoginSerializer
